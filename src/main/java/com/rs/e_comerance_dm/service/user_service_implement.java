@@ -10,7 +10,7 @@ public class user_service_implement implements user_service {
     @Autowired
     private user_repository userRepository;
     @Override
-    public user findByUserName(String username) {
-    return userRepository.findByUsername(username);
+    public user findByUserName(String userName) {
+    return userRepository.findByUserName(userName);
     }
 }
