@@ -14,8 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class security_config{
+
     @Autowired
-    private static custom_user_detail_service customDetailService;
+    custom_user_detail_service custom_user_detail_service;
     @Bean
     BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -24,8 +25,8 @@ public class security_config{
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((auth)->auth.requestMatchers("/*").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated())
-                .formLogin(Login->Login.loginPage("/logon").loginProcessingUrl("/login")
-                        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/admin",true));
+                .formLogin(Login->Login.loginPage("/logon").loginProcessingUrl("/logon")
+                        .usernameParameter("userName").passwordParameter("passWord").defaultSuccessUrl("/admin",true));
         return http.build();
     }
     @Bean
