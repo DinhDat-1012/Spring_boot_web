@@ -1,12 +1,1 @@
-package com.rs.e_comerance_dm.Controller;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-public class home_controller {
-    @RequestMapping("/home")
-    public String home_page() {
-        return "Front_end/home_page";
-    }
-}
+package com.rs.e_comerance_dm.Controller;import com.rs.e_comerance_dm.service.user_service_implement;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import org.springframework.stereotype.Controller;import org.springframework.web.bind.annotation.RequestMapping;import static org.hibernate.internal.CoreLogging.logger;@Controllerpublic class home_controller {    private static final Logger log = LoggerFactory.getLogger(home_controller.class);    @RequestMapping("/home")    public String home_page() {        return "Front_end/home_page";    }}

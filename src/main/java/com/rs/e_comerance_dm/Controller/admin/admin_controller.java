@@ -10,7 +10,7 @@ public class admin_controller {
     public String index() {
         return "redirect:/admin/";
     }
-    @RequestMapping("/admin/")
+    @RequestMapping("/")
     private static String admin_source() {
         return "admin_source/admin_source.html";
     }

@@ -15,13 +15,9 @@ public class customer_user_detail implements UserDetails {
         this.authorities = authorities;
     }
     public customer_user_detail() {}
-
-    public Collection<? extends GrantedAuthority> get_authorities(){
-        return authorities;
-    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return authorities;
     }
 
     @Override

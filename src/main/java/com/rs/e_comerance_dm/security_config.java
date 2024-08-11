@@ -24,7 +24,7 @@ public class security_config{
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((auth)->auth.requestMatchers("/*").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated())
+                        .requestMatchers("/admin/**").hasAnyAuthority("ADMIN").anyRequest().authenticated())
                 .formLogin(Login->Login.loginPage("/logon").loginProcessingUrl("/logon")
                         .usernameParameter("userName").passwordParameter("passWord").defaultSuccessUrl("/admin",true));
         return http.build();

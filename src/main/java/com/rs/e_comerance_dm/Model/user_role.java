@@ -2,7 +2,6 @@ package com.rs.e_comerance_dm.Model;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "users_roles")
 public class user_role {
