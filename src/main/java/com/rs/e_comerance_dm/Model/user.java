@@ -12,6 +12,7 @@ public class user {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "username")
     private String userName;
     @Column(name = "password")
@@ -34,8 +35,7 @@ public class user {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<user_role> userRoles;
     public user(){}
-    public user(Long id, String userName, String passWord, Boolean enabled, String fullName, Boolean gender, Date birthday, String address, String email, String telephone, Set<user_role> userRoles) {
-        this.id = id;
+    public user( String userName, String passWord, Boolean enabled, String fullName, Boolean gender, Date birthday, String address, String email, String telephone, Set<user_role> userRoles) {
         this.userName = userName;
         this.passWord = passWord;
         this.enabled = enabled;

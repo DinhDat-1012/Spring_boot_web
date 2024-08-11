@@ -8,23 +8,29 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class security_config{
+
     @Autowired
-    private custom_user_detail_service customDetailService;
+    custom_user_detail_service custom_user_detail_service;
+    @Bean
+    BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((auth)->auth.requestMatchers("/*").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated())
-                .formLogin(Login->Login.loginPage("/logon").loginProcessingUrl("/login")
-                        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/admin",true));
+                        .requestMatchers("/admin/**").hasAnyAuthority("ADMIN").anyRequest().authenticated())
+                .formLogin(Login->Login.loginPage("/logon").loginProcessingUrl("/logon")
+                        .usernameParameter("userName").passwordParameter("passWord").defaultSuccessUrl("/admin",true));
         return http.build();
     }
     @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
-        return (web)->web.debug(true).ignoring().requestMatchers("/static/**");
+        return (web)->web.debug(true).ignoring().requestMatchers("/static/**","/Front_end/**","/assets/**");
     }
 }
