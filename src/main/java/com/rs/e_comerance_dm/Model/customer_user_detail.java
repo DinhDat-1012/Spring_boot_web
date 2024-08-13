@@ -15,6 +15,12 @@ public class customer_user_detail implements UserDetails {
         this.authorities = authorities;
     }
     public customer_user_detail() {}
+    public String get_full_user_name() {
+        return __user.getFullName();
+    }
+    public user get__user() {
+        return this.__user;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
