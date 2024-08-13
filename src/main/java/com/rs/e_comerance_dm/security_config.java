@@ -31,6 +31,6 @@ public class security_config{
     }
     @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
-        return (web)->web.debug(true).ignoring().requestMatchers("/static/**","/Front_end/**","/assets/**","/admin_source/**");
+        return (web)->web.debug(true).ignoring().requestMatchers("/static/**","/Front_end/**","/assets/**","/assets/css/**","/assets/js/**");
     }
 }
