@@ -26,7 +26,8 @@ public class security_config{
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((auth)->auth.requestMatchers("/*").permitAll()
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN").anyRequest().authenticated())
                 .formLogin(Login->Login.loginPage("/logon").loginProcessingUrl("/logon")
-                        .usernameParameter("userName").passwordParameter("passWord").defaultSuccessUrl("/admin",true));
+                        .usernameParameter("userName").passwordParameter("passWord").defaultSuccessUrl("/admin",true)).logout(logout-> logout.logoutUrl("/admin-logout")
+                        .logoutSuccessUrl("/logon").permitAll());
         return http.build();
     }
     @Bean
